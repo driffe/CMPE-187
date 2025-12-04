@@ -380,10 +380,19 @@ def run_test(filename):
             
             # Process each question
             all_results = []
-            for i, question in enumerate(questions, 1):
+            for i, q_data in enumerate(questions, 1):
+                question = q_data["question"]
+                keywords = q_data.get("keywords", [])
                 yield f"data: {json.dumps({'type': 'progress', 'current': i, 'total': total, 'message': f'[{i}/{total}] Processing: {question[:50]}...'})}\n\n"
                 
-                result = process_question(question, context_tree, input_tree, use_copilot=True)
+                if keywords:
+                    keywords_display = ", ".join(keywords[:5])
+                    if len(keywords) > 5:
+                        keywords_display += "..."
+                    keywords_msg = f"Expected keywords: {keywords_display}"
+                    yield f"data: {json.dumps({'type': 'log', 'message': keywords_msg})}\n\n"
+                
+                result = process_question(question, context_tree, input_tree, use_copilot=True, expected_keywords=keywords)
                 all_results.append(result)
                 
                 # Display prompt_used and response for each AI service
@@ -393,6 +402,7 @@ def run_test(filename):
                     prompt_used = response_data.get("prompt_used", "")
                     ai_response = response_data.get("response", "")
                     error = response_data.get("error", "")
+                    keyword_analysis = response_data.get("keyword_analysis")
                     
                     service_header = f"\n--- {service.upper()} ---"
                     yield f"data: {json.dumps({'type': 'log', 'message': service_header})}\n\n"
@@ -408,6 +418,21 @@ def run_test(filename):
                             yield f"data: {json.dumps({'type': 'log', 'message': f'Response: {response_preview}'})}\n\n"
                         else:
                             yield f"data: {json.dumps({'type': 'log', 'message': 'Response: (empty)'})}\n\n"
+                        
+                        # Display keyword analysis if available
+                        if keyword_analysis:
+                            match_ratio = keyword_analysis.get("match_ratio", 0)
+                            found_count = len(keyword_analysis.get("found_keywords", []))
+                            total_count = len(keyword_analysis.get("expected_keywords", []))
+                            keywords_msg = f"Keywords: {found_count}/{total_count} found ({match_ratio*100:.0f}%)"
+                            yield f"data: {json.dumps({'type': 'log', 'message': keywords_msg})}\n\n"
+                            if keyword_analysis.get("missing_keywords"):
+                                missing = keyword_analysis["missing_keywords"][:3]
+                                missing_display = ", ".join(missing)
+                                if len(keyword_analysis["missing_keywords"]) > 3:
+                                    missing_display += "..."
+                                missing_msg = f"Missing: {missing_display}"
+                                yield f"data: {json.dumps({'type': 'log', 'message': missing_msg})}\n\n"
             
             # Save results
             output_file = 'output.json'

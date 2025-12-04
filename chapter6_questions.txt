@@ -1,0 +1,52 @@
+
+What is a stack?|Chapter 6|Stack|Good|Undergraduate|New Topic|Definition|Correct & Complete|LIFO|push|pop
+
+What does the push() method do?|Chapter 6|Stack|Good|Undergraduate|New Topic|Operation Understanding|Correct & Complete|push|insert|top
+
+What happens when you call pop() on an empty stack?|Chapter 6|Stack|Good|Undergraduate|Continued|Edge Case|Correct & Complete|empty|exception|EmptyStackException
+
+Explain how a stack works using a real-world example|Chapter 6|Stack|Good|High School|New Topic|Real-World Analogy|Correct & Complete|LIFO|plates|pancakes
+
+Give me an example of stack implementation in Java|Chapter 6|Stack|Good|Graduate|Continued|Application & Example|Correct & Complete|implementation|Java|array
+
+What is the time complexity of push and pop operations?|Chapter 6|Stack|Good|Graduate|Continued|Performance|Correct & Complete|O(1)|constant|time
+
+How is a stack different from an array?|Chapter 6|Stack|Good|Undergraduate|Continued|Comparative|Correct & Complete|stack|array|LIFO
+
+stack what mean|Chapter 6|Stack|Poor|High School|New Topic|Malformed|Clarification Request|clarify|rephrase|mean
+
+
+What is a queue?|Chapter 6|Queue|Good|Undergraduate|New Topic|Definition|Correct & Complete|FIFO|enqueue|dequeue
+
+What does the enqueue() operation do?|Chapter 6|Queue|Good|Undergraduate|New Topic|Operation Understanding|Correct & Complete|enqueue|insert|rear
+
+What is returned by the first() method in a queue?|Chapter 6|Queue|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|first|front|peek
+
+Give a real-world example of a queue|Chapter 6|Queue|Good|High School|New Topic|Real-World Analogy|Correct & Complete|FIFO|line|waiting
+
+How does a queue differ from a stack?|Chapter 6|Queue|Good|Undergraduate|Continued|Comparative|Correct & Complete|queue|stack|FIFO|LIFO
+
+What happens when dequeue is called on an empty queue?|Chapter 6|Queue|Good|Undergraduate|Continued|Edge Case|Correct & Complete|empty|exception|EmptyQueueException
+
+Trace the following operations: enqueue(5), enqueue(3), dequeue(), enqueue(7)|Chapter 6|Queue|Good|Graduate|Continued|Application & Example|Correct & Complete|trace|front|rear
+
+qusvuie what mean?|Chapter 6|Queue|Poor|High School|New Topic|Malformed|No Response or Clarification Request|clarify|rephrase|unclear
+
+
+What is a deque?|Chapter 6|Deque|Good|Undergraduate|New Topic|Definition|Correct & Complete|deque|double-ended|both ends
+
+What does addFirst() do in a deque?|Chapter 6|Deque|Good|Undergraduate|New Topic|Operation Understanding|Correct & Complete|addFirst|insert|front
+
+What is the difference between addLast() and addFirst()?|Chapter 6|Deque|Good|Undergraduate|Continued|Comparative|Correct & Complete|addLast|addFirst|front|rear
+
+How can a deque be used as both a stack and queue?|Chapter 6|Deque|Good|Graduate|Continued|Application & Example|Correct & Complete|stack|queue|LIFO|FIFO
+
+What does removeFirst() return?|Chapter 6|Deque|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|removeFirst|remove|front
+
+Give an example where a deque is more useful than a regular queue|Chapter 6|Deque|Good|Graduate|Continued|Real-World Analogy|Correct & Complete|browser|history|undo|redo
+
+Can you implement a deque using an array?|Chapter 6|Deque|Good|Graduate|Continued|Application & Example|Correct & Complete|array|circular|implementation
+
+What is the time complexity of deque operations?|Chapter 6|Deque|Good|Graduate|Continued|Performance|Correct & Complete|O(1)|constant|time
+
+deque do what|Chapter 6|Deque|Poor|High School|New Topic|Malformed|Clarification Request|clarify|rephrase|mean

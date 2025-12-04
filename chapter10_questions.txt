@@ -1,0 +1,43 @@
+
+
+What is a Map?|Chapter 10|Map|Good|Undergraduate|New Topic|Definition|Correct & Complete|map|key|value|pair
+
+What does the put(key, value) method do?|Chapter 10|Map|Good|Undergraduate|New Topic|Operation Understanding|Correct & Complete|put|insert|key|value
+
+What does get(key) return if the key doesn't exist?|Chapter 10|Map|Good|Undergraduate|Continued|Edge Case|Correct & Complete|null|get|key|not found
+
+Can a Map have duplicate keys?|Chapter 10|Map|Good|Undergraduate|Continued|Conceptual|Correct & Complete|unique|keys|duplicate|overwrite
+
+What does the remove(key) method do?|Chapter 10|Map|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|remove|delete|key|value
+
+Give a real-world example of a Map|Chapter 10|Map|Good|High School|New Topic|Real-World Analogy|Correct & Complete|phone book|dictionary|name|number
+
+How is a Map different from a List?|Chapter 10|Map|Good|Undergraduate|Continued|Comparative|Correct & Complete|Map|List|key|index
+
+
+What is a hash table?|Chapter 10|Hash Table|Good|Undergraduate|New Topic|Definition|Correct & Complete|hash table|hash|key|value|O(1)
+
+How does a hash function work?|Chapter 10|Hash Table|Good|Graduate|Continued|Conceptual|Correct & Complete|hash function|hash code|index|bucket
+
+What is a collision in a hash table?|Chapter 10|Hash Table|Good|Undergraduate|Continued|Definition|Correct & Complete|collision|same|index|bucket
+
+Explain separate chaining for collision resolution|Chapter 10|Hash Table|Good|Graduate|Continued|Advanced Concept|Correct & Complete|separate chaining|linked list|bucket|collision
+
+Explain open addressing for collision resolution|Chapter 10|Hash Table|Good|Graduate|Continued|Advanced Concept|Correct & Complete|open addressing|linear probing|collision|probe
+
+What is the load factor in a hash table?|Chapter 10|Hash Table|Good|Graduate|Continued|Conceptual|Correct & Complete|load factor|capacity|size|ratio
+
+When does a hash table need to be rehashed?|Chapter 10|Hash Table|Good|Graduate|Continued|Operation Understanding|Correct & Complete|rehash|resize|load factor|threshold
+
+
+What is a skip list?|Chapter 10|Skip List|Good|Graduate|New Topic|Definition|Correct & Complete|skip list|probabilistic|tower|levels
+
+How does search work in a skip list?|Chapter 10|Skip List|Good|Graduate|Continued|Operation Understanding|Correct & Complete|search|tower|level|O(log n)
+
+What is the expected time complexity of skip list operations?|Chapter 10|Skip List|Good|Graduate|Continued|Performance|Correct & Complete|O(log n)|expected|time|search
+
+How are towers built in a skip list?|Chapter 10|Skip List|Good|Graduate|Continued|Conceptual|Correct & Complete|tower|coin flip|probability|random
+
+What is the advantage of a skip list over a balanced tree?|Chapter 10|Skip List|Good|Graduate|Continued|Comparative|Correct & Complete|simpler|implementation|probabilistic|no rotation
+
+Explain the insertion process in a skip list|Chapter 10|Skip List|Good|Graduate|Continued|Operation Understanding|Correct & Complete|insert|search|tower|coin flip

@@ -65,14 +65,7 @@ def validate_context_tree(context_tree: Dict) -> bool:
     return True
 
 
-def read_questions(file_path: str) -> List[str]:
-    """Reads a list of questions from a text file.
-    
-    Supported formats:
-    1. Simple questions (one question per line)
-    2. Structured format (pipe-separated): question|Chapter|Topic|...
-       - The first field is the question
-    """
+def read_questions(file_path: str) -> List[Dict[str, Any]]:
     questions = []
     with open(file_path, 'r', encoding='utf-8') as f:
         for line in f:
@@ -82,13 +75,35 @@ def read_questions(file_path: str) -> List[str]:
             
             # Check if it's a structured format separated by pipe (|)
             if '|' in line:
-                # First field is the question
-                question = line.split('|')[0].strip()
+                parts = [p.strip() for p in line.split('|')]
+                question = parts[0] if parts else ""
+                
                 if question:
-                    questions.append(question)
+                    # Extract keywords (typically after "Correct & Complete" or from field 8 onwards)
+                    keywords = []
+                    if len(parts) > 8:
+                        # Look for "Correct & Complete" or similar patterns
+                        keyword_start_idx = 8
+                        for i, part in enumerate(parts):
+                            if i >= 7 and ("Complete" in part or "Correct" in part):
+                                keyword_start_idx = i + 1
+                                break
+                        
+                        # Extract keywords from keyword_start_idx onwards
+                        keywords = [kw.lower() for kw in parts[keyword_start_idx:] if kw]
+                    
+                    questions.append({
+                        "question": question,
+                        "keywords": keywords,
+                        "raw_line": line
+                    })
             else:
                 # Simple question format
-                questions.append(line)
+                questions.append({
+                    "question": line,
+                    "keywords": [],
+                    "raw_line": line
+                })
     
     return questions
 
@@ -147,11 +162,6 @@ def format_input_tree_for_prompt(input_tree: Union[Dict, List, str, None], inden
 
 
 def ask_copilot(question: str, context_tree: Optional[Dict] = None, input_tree: Optional[Dict] = None) -> Dict[str, Any]:
-    """Sends a question to the GitHub Copilot API.
-    
-    Note: GitHub Copilot has limited public API access.
-    May need to use GitHub API for code suggestions or alternative methods.
-    """
     # Include Context and Input tree in the prompt
     context_str = format_context_for_prompt(context_tree) if context_tree else ""
     input_str = format_input_tree_for_prompt(input_tree) if input_tree else ""
@@ -167,10 +177,8 @@ def ask_copilot(question: str, context_tree: Optional[Dict] = None, input_tree: 
     if prompt_parts:
         full_prompt = "\n\n".join(prompt_parts) + f"\n\nQuestion: {question}"
     
-    # GitHub Copilot doesn't have a public API, so we use OpenAI API as a replacement.
-    # Uses a different model for Copilot than ChatGPT (default: gpt-3.5-turbo)
     api_key = os.getenv("OPENAI_API_KEY")
-    copilot_model = os.getenv("COPILOT_MODEL", "gpt-3.5-turbo")  # Default: gpt-3.5-turbo
+    copilot_model = os.getenv("COPILOT_MODEL", "gpt-3.5-turbo")
     
     if not api_key:
         return {
@@ -183,14 +191,13 @@ def ask_copilot(question: str, context_tree: Optional[Dict] = None, input_tree: 
             "error": "OPENAI_API_KEY environment variable not set"
         }
     
-    # Use OpenAI API as a replacement for Copilot
     if OPENAI_AVAILABLE:
         try:
             client = openai.OpenAI(api_key=api_key)
             response = client.chat.completions.create(
-                model=copilot_model,  # Model for Copilot (default: gpt-3.5-turbo)
+                model=copilot_model,  # Model for Copilot
                 messages=[
-                    {"role": "system", "content": "You are a helpful coding assistant similar to GitHub Copilot."},
+                    {"role": "system", "content": "You are a helpful coding assistant GitHub Copilot."},
                     {"role": "user", "content": full_prompt}
                 ],
                 max_tokens=1000,
@@ -365,7 +372,7 @@ def ask_chatgpt(question: str, context_tree: Optional[Dict] = None, input_tree: 
         full_prompt = "\n\n".join(prompt_parts) + f"\n\nQuestion: {question}"
     
     api_key = os.getenv("OPENAI_API_KEY")
-    chatgpt_model = os.getenv("CHATGPT_MODEL", "gpt-4")  # Default: gpt-4
+    chatgpt_model = os.getenv("CHATGPT_MODEL", "gpt-4")
     
     if not api_key:
         return {
@@ -422,12 +429,7 @@ def ask_chatgpt(question: str, context_tree: Optional[Dict] = None, input_tree: 
         }
 
 
-def classify_response(response_data: Dict[str, Any]) -> str:
-    """Classifies AI responses according to the Output tree structure.
-    
-    Returns:
-        "Correct Answer", "Wrong Answer", or "No Response from AI"
-    """
+def classify_response(response_data: Dict[str, Any], expected_keywords: List[str] = None) -> str:
     response = response_data.get("response", "")
     error = response_data.get("error")
     question = response_data.get("question", "").lower()
@@ -469,13 +471,30 @@ def classify_response(response_data: Dict[str, Any]) -> str:
     if any(phrase in response_lower for phrase in short_unclear_responses) and len(response.split()) < 10:
         return "Wrong Answer"
     
+    # Check expected keywords if provided
+    if expected_keywords and len(expected_keywords) > 0:
+        keywords_lower = [kw.lower() for kw in expected_keywords]
+        found_keywords = [kw for kw in keywords_lower if kw in response_lower]
+        keyword_match_ratio = len(found_keywords) / len(keywords_lower) if keywords_lower else 0
+        
+        # Store keyword matching info in response_data for later use
+        response_data["keyword_analysis"] = {
+            "expected_keywords": expected_keywords,
+            "found_keywords": found_keywords,
+            "missing_keywords": [kw for kw in keywords_lower if kw not in response_lower],
+            "match_ratio": keyword_match_ratio
+        }
+        
+        # If less than 50% of keywords are found, consider it "Wrong Answer"
+        if keyword_match_ratio < 0.5:
+            return "Wrong Answer"
+    
     # Otherwise, consider it as "Correct Answer"
     return "Correct Answer"
 
 
-def categorize_response(response_data: Dict[str, Any]) -> Dict[str, Any]:
-    """Categorizes responses according to the Output tree structure."""
-    classification = classify_response(response_data)
+def categorize_response(response_data: Dict[str, Any], expected_keywords: List[str] = None) -> Dict[str, Any]:
+    classification = classify_response(response_data, expected_keywords)
     
     # Classify according to Output tree structure
     if classification == "Correct Answer":
@@ -498,17 +517,10 @@ def categorize_response(response_data: Dict[str, Any]) -> Dict[str, Any]:
         }
 
 
-def process_question(question: str, context_tree: Dict = None, input_tree: Dict = None, use_copilot: bool = True) -> Dict[str, Any]:
-    """Sends a question to AI services and collects results.
-    
-    Args:
-        question: Question text
-        context_tree: Context tree (optional)
-        input_tree: Input tree (optional)
-        use_copilot: Whether to use Copilot (default: True, automatically False if API key is missing)
-    """
+def process_question(question: str, context_tree: Dict = None, input_tree: Dict = None, use_copilot: bool = True, expected_keywords: List[str] = None) -> Dict[str, Any]:
     results = {
         "question": question,
+        "expected_keywords": expected_keywords or [],
         "responses": []
     }
     
@@ -517,17 +529,17 @@ def process_question(question: str, context_tree: Dict = None, input_tree: Dict 
         copilot_token = os.getenv("GITHUB_COPILOT_TOKEN") or os.getenv("OPENAI_API_KEY")
         if copilot_token:
             copilot_response = ask_copilot(question, context_tree, input_tree)
-            results["responses"].append(categorize_response(copilot_response))
+            results["responses"].append(categorize_response(copilot_response, expected_keywords))
         else:
             print("  [Copilot] Skipping due to missing API key.")
     
     # Claude
     claude_response = ask_claude(question, context_tree, input_tree)
-    results["responses"].append(categorize_response(claude_response))
+    results["responses"].append(categorize_response(claude_response, expected_keywords))
     
     # ChatGPT
     chatgpt_response = ask_chatgpt(question, context_tree, input_tree)
-    results["responses"].append(categorize_response(chatgpt_response))
+    results["responses"].append(categorize_response(chatgpt_response, expected_keywords))
     
     return results
 
@@ -596,6 +608,16 @@ def save_output_tree(results: List[Dict], output_path: str):
                 "response": response["response_data"].get("response", ""),
                 "prompt_used": response["response_data"].get("prompt_used", "")
             }
+            
+            # Add keyword analysis if available
+            keyword_analysis = response["response_data"].get("keyword_analysis")
+            if keyword_analysis:
+                response_entry["keyword_analysis"] = {
+                    "expected_keywords": keyword_analysis.get("expected_keywords", []),
+                    "found_keywords": keyword_analysis.get("found_keywords", []),
+                    "missing_keywords": keyword_analysis.get("missing_keywords", []),
+                    "match_ratio": keyword_analysis.get("match_ratio", 0)
+                }
             
             output_tree["output"][validity][result].append(response_entry)
     
@@ -678,8 +700,8 @@ def main():
         args.input_tree = input_tree
     
     # Read questions file
-    questions = read_questions(args.questions_file)
-    print(f"Read {len(questions)} questions.")
+    questions_data = read_questions(args.questions_file)
+    print(f"Read {len(questions_data)} questions.")
     
     # Check which AI services to use
     use_copilot = not args.skip_copilot
@@ -718,13 +740,17 @@ def main():
     
     # Process each question
     all_results = []
-    for i, question in enumerate(questions, 1):
-        print(f"\n[{i}/{len(questions)}] Processing: {question[:50]}...")
-        result = process_question(question, context_tree, input_tree, use_copilot=use_copilot)
+    for i, q_data in enumerate(questions_data, 1):
+        question = q_data["question"]
+        keywords = q_data.get("keywords", [])
+        print(f"\n[{i}/{len(questions_data)}] Processing: {question[:50]}...")
+        if keywords:
+            print(f"  Expected keywords: {', '.join(keywords[:5])}{'...' if len(keywords) > 5 else ''}")
+        result = process_question(question, context_tree, input_tree, use_copilot=use_copilot, expected_keywords=keywords)
         all_results.append(result)
         
         # Short delay for API rate limiting (optional)
-        if i < len(questions):
+        if i < len(questions_data):
             time.sleep(0.5)
     
     # Save results

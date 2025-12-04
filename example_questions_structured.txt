@@ -4,8 +4,6 @@ qusvuie what mean?|Chapter 6|Queue|Poor|High School|New Topic|Malformed|No Respo
 
 What is the difference between a stack and a queue?|Chapter 6|Comparison|Good|Undergraduate|New Topic|Comparative|Correct & Complete|LIFO|FIFO|stack|queue|Last-In-First-Out|First-In-First-Out
 
-what iterator do|Chapter 7|Iterator|Poor|High School|New Topic|Malformed|Clarification Request|clarify|mean|rephrase
-
 How does ArrayList resize?|Chapter 7|ArrayList|Good|Undergraduate|New Topic|Operation Understanding|Correct & Complete|dynamic|capacity|array|double|resize|copy
 
 What does the iterator remove() method do?|Chapter 7|Iterator|Good|Undergraduate|New Topic|Operation Understanding|Correct & Complete|remove|last|next|IllegalStateException|element
@@ -13,6 +11,3 @@ What does the iterator remove() method do?|Chapter 7|Iterator|Good|Undergraduate
 What is a hash table?|Chapter 10|Hash Table|Good|Undergraduate|New Topic|Definition|Correct & Complete|hash|key|value|map|O(1)|collision
 
 How does collision resolution work in hash tables?|Chapter 10|Hash Table|Good|Graduate|Continued|Advanced Concept|Correct & Complete|collision|chaining|open addressing|linear probing|separate chaining
-
-What is a skip list?|Chapter 10|Skip List|Good|Graduate|New Topic|Definition|Correct & Complete|skip list|probabilistic|tower|O(log n)|search
-

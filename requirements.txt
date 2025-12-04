@@ -1,0 +1,14 @@
+# Test Automation Tool Dependencies
+
+# AI API 클라이언트들
+openai>=1.0.0  # ChatGPT
+anthropic>=0.18.0  # Claude
+
+# 웹 서버
+flask>=2.3.0
+flask-cors>=4.0.0
+
+# 기타
+requests>=2.31.0
+python-dotenv>=1.0.0  # 환경 변수 관리
+

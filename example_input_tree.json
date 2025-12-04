@@ -1,0 +1,68 @@
+{
+  "input": {
+    "Chapter 6": {
+      "Stack": [
+        "Definition",
+        "Application Use cases",
+        "Abstract Data type",
+        "Comparative",
+        "Misleading"
+      ],
+      "Queue": [
+        "Definition",
+        "Application Use cases",
+        "Abstract Data type",
+        "Comparative",
+        "Misleading"
+      ],
+      "Dequeue": [
+        "Definition",
+        "Application Use cases",
+        "Abstract Data type",
+        "Comparative",
+        "Misleading"
+      ]
+    },
+    "Chapter 7": {
+      "Array List": [
+        "Definition and Purpose",
+        "Operations",
+        "Dynamic Resizing"
+      ],
+      "Positional List": [
+        "Definition and ADT",
+        "Implementation",
+        "Efficiency"
+      ],
+      "Iterators": [
+        "Iterator Interface",
+        "Iterable Interface",
+        "Implementation"
+      ]
+    },
+    "Chapter 10": {
+      "Maps": [
+        "Definition and Purpose",
+        "Operations",
+        "Value Semantics",
+        "Unordered vs Ordered Maps",
+        "Use Cases"
+      ],
+      "Hash Tables": [
+        "Hash Functions",
+        "Collision Handling",
+        "Load Factor",
+        "Complexity",
+        "Common Misconception"
+      ],
+      "Skip Lists": [
+        "Structure and Levels",
+        "Search-Insert-Delete",
+        "Expected Complexity",
+        "Ordered Iteration",
+        "Applications"
+      ]
+    }
+  }
+}
+

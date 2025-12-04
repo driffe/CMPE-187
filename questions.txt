@@ -1,0 +1,186 @@
+# Chapter 6: Stacks, Queues, and Deques (25 test cases)
+
+# Format: Question|Chapter|DataStructure|Grammar|Education|Continuity|InputCategory|ExpectedCategory|Keyword1|Keyword2|...
+
+# Stack Tests (8 cases)
+
+What is a stack?|Chapter 6|Stack|Good|Undergraduate|New Topic|Definition|Correct & Complete|LIFO|Last-In-First-Out|push|pop|data structure
+
+What does the push() method do?|Chapter 6|Stack|Good|Undergraduate|New Topic|Operation Understanding|Correct & Complete|push|insert|top|element|add
+
+What happens when you call pop() on an empty stack?|Chapter 6|Stack|Good|Undergraduate|Continued|Edge Case|Correct & Complete|empty|exception|error|underflow|EmptyStackException
+
+Explain how a stack works using a real-world example|Chapter 6|Stack|Good|High School|New Topic|Real-World Analogy|Correct & Complete|plates|books|pancakes|LIFO|last|first
+
+Give me an example of stack implementation in Java|Chapter 6|Stack|Good|Graduate|Continued|Application & Example|Correct & Complete|code|implementation|array|LinkedList|Java|class
+
+What is the time complexity of push and pop operations?|Chapter 6|Stack|Good|Graduate|Continued|Performance|Correct & Complete|O(1)|constant|time|complexity|efficient
+
+How is a stack different from an array?|Chapter 6|Stack|Good|Undergraduate|Continued|Comparative|Correct & Complete|stack|array|LIFO|access|restricted|operations
+
+stack what mean|Chapter 6|Stack|Poor|High School|New Topic|Malformed|Clarification Request|clarify|rephrase|mean|understand
+
+# Queue Tests (8 cases)
+
+What is a queue?|Chapter 6|Queue|Good|Undergraduate|New Topic|Definition|Correct & Complete|FIFO|First-In-First-Out|enqueue|dequeue|data structure
+
+What does the enqueue() operation do?|Chapter 6|Queue|Good|Undergraduate|New Topic|Operation Understanding|Correct & Complete|enqueue|insert|rear|back|add|element
+
+What is returned by the first() method in a queue?|Chapter 6|Queue|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|first|front|element|peek|without removing
+
+Give a real-world example of a queue|Chapter 6|Queue|Good|High School|New Topic|Real-World Analogy|Correct & Complete|line|waiting|checkout|printer|FIFO|first|served
+
+How does a queue differ from a stack?|Chapter 6|Queue|Good|Undergraduate|Continued|Comparative|Correct & Complete|queue|stack|FIFO|LIFO|order|insertion|removal
+
+What happens when dequeue is called on an empty queue?|Chapter 6|Queue|Good|Undergraduate|Continued|Edge Case|Correct & Complete|empty|exception|error|underflow|EmptyQueueException
+
+Trace the following operations: enqueue(5), enqueue(3), dequeue(), enqueue(7)|Chapter 6|Queue|Good|Graduate|Continued|Application & Example|Correct & Complete|trace|5|3|7|front|rear|result
+
+qusvuie what mean?|Chapter 6|Queue|Poor|High School|New Topic|Malformed|No Response or Clarification Request|clarify|rephrase|unclear|typo|invalid
+
+# Deque Tests (9 cases)
+
+What is a deque?|Chapter 6|Deque|Good|Undergraduate|New Topic|Definition|Correct & Complete|deque|double-ended|queue|both ends|insert|remove
+
+What does addFirst() do in a deque?|Chapter 6|Deque|Good|Undergraduate|New Topic|Operation Understanding|Correct & Complete|addFirst|insert|front|beginning|element
+
+What is the difference between addLast() and addFirst()?|Chapter 6|Deque|Good|Undergraduate|Continued|Comparative|Correct & Complete|addLast|addFirst|front|rear|both ends|difference
+
+How can a deque be used as both a stack and queue?|Chapter 6|Deque|Good|Graduate|Continued|Application & Example|Correct & Complete|stack|queue|versatile|LIFO|FIFO|operations
+
+What does removeFirst() return?|Chapter 6|Deque|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|removeFirst|remove|return|front|element
+
+Give an example where a deque is more useful than a regular queue|Chapter 6|Deque|Good|Graduate|Continued|Real-World Analogy|Correct & Complete|browser|history|undo|redo|both ends
+
+Can you implement a deque using an array?|Chapter 6|Deque|Good|Graduate|Continued|Application & Example|Correct & Complete|array|circular|implementation|wrap-around|modulo
+
+What is the time complexity of deque operations?|Chapter 6|Deque|Good|Graduate|Continued|Performance|Correct & Complete|O(1)|constant|time|addFirst|addLast|removeFirst|removeLast
+
+deque do what|Chapter 6|Deque|Poor|High School|New Topic|Malformed|Clarification Request|clarify|rephrase|mean|unclear
+
+# Chapter 7: ArrayLists, Positional Lists, and Iterators (35 test cases)
+
+# ArrayList Tests (11 cases)
+
+What is an ArrayList?|Chapter 7|ArrayList|Good|Undergraduate|New Topic|Definition|Correct & Complete|ArrayList|dynamic|array|resizable|list|Java
+
+How does an ArrayList differ from a regular array?|Chapter 7|ArrayList|Good|Undergraduate|New Topic|Comparative|Correct & Complete|ArrayList|array|dynamic|fixed|size|resize
+
+What happens when you add an element beyond the capacity?|Chapter 7|ArrayList|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|capacity|resize|grow|double|dynamic
+
+How does ArrayList resizing work?|Chapter 7|ArrayList|Good|Graduate|Continued|Operation Understanding|Correct & Complete|resize|capacity|double|copy|array|new
+
+What is the time complexity of get(index) in ArrayList?|Chapter 7|ArrayList|Good|Graduate|Continued|Performance|Correct & Complete|O(1)|constant|random access|index|time complexity
+
+What is the time complexity of add(index, element)?|Chapter 7|ArrayList|Good|Graduate|Continued|Performance|Correct & Complete|O(n)|linear|shift|elements|insertion
+
+Explain the remove(index) operation in ArrayList|Chapter 7|ArrayList|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|remove|shift|index|elements|left
+
+What is the initial capacity of an ArrayList?|Chapter 7|ArrayList|Good|Undergraduate|Continued|Definition|Correct & Complete|initial|capacity|10|default|size
+
+Show me ArrayList implementation code in Java|Chapter 7|ArrayList|Good|Graduate|Continued|Application & Example|Correct & Complete|code|implementation|Java|class|methods
+
+Why does ArrayList use an array internally?|Chapter 7|ArrayList|Good|Graduate|Continued|Conceptual|Correct & Complete|array|random access|O(1)|index|performance
+
+arraylist what work|Chapter 7|ArrayList|Poor|High School|New Topic|Malformed|Clarification Request|clarify|rephrase|how|does
+
+# Positional List Tests (12 cases)
+
+What is a Positional List?|Chapter 7|Positional List|Good|Undergraduate|New Topic|Definition|Correct & Complete|positional|list|position|node|pointer|ADT
+
+How is a Positional List different from an ArrayList?|Chapter 7|Positional List|Good|Undergraduate|New Topic|Comparative|Correct & Complete|positional|ArrayList|pointer|index|node|position
+
+What does the addBefore() method do?|Chapter 7|Positional List|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|addBefore|insert|position|before|node
+
+What does the addAfter() method do?|Chapter 7|Positional List|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|addAfter|insert|position|after|node
+
+Explain the set(position, element) operation|Chapter 7|Positional List|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|set|replace|position|element|update
+
+What does the remove(position) method return?|Chapter 7|Positional List|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|remove|return|element|position|delete
+
+What is a Position in a Positional List?|Chapter 7|Positional List|Good|Graduate|Continued|Definition|Correct & Complete|position|marker|location|node|reference
+
+How do you access the first position in a Positional List?|Chapter 7|Positional List|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|first|position|access|method|beginning
+
+What is the time complexity of addBefore()?|Chapter 7|Positional List|Good|Graduate|Continued|Performance|Correct & Complete|O(1)|constant|pointer|addBefore|time complexity
+
+Give an example where Positional List is better than ArrayList|Chapter 7|Positional List|Good|Graduate|Continued|Application & Example|Correct & Complete|insertion|deletion|middle|O(1)|pointer|frequent
+
+How is a Positional List implemented internally?|Chapter 7|Positional List|Good|Graduate|Continued|Conceptual|Correct & Complete|doubly linked list|nodes|pointers|prev|next
+
+positional list do|Chapter 7|Positional List|Poor|High School|New Topic|Malformed|Clarification Request|clarify|rephrase|what|does
+
+# Iterator Tests (12 cases)
+
+What is an iterator?|Chapter 7|Iterator|Good|Undergraduate|New Topic|Definition|Correct & Complete|iterator|traverse|collection|elements|sequential
+
+What does the hasNext() method do?|Chapter 7|Iterator|Good|Undergraduate|New Topic|Operation Understanding|Correct & Complete|hasNext|check|more|elements|boolean
+
+What does the next() method return?|Chapter 7|Iterator|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|next|return|element|advance|current
+
+What happens if you call next() when hasNext() is false?|Chapter 7|Iterator|Good|Undergraduate|Continued|Edge Case|Correct & Complete|NoSuchElementException|exception|error|hasNext|false
+
+Explain the iterator remove() method|Chapter 7|Iterator|Good|Graduate|Continued|Operation Understanding|Correct & Complete|remove|last|element|next|IllegalStateException
+
+What is an IllegalStateException in the context of iterators?|Chapter 7|Iterator|Good|Graduate|Continued|Error Handling|Correct & Complete|IllegalStateException|remove|next|contract|violation
+
+Can you call remove() twice in a row?|Chapter 7|Iterator|Good|Graduate|Continued|Edge Case|Correct & Complete|remove|twice|IllegalStateException|next|contract
+
+Show me how to use an iterator in Java|Chapter 7|Iterator|Good|Undergraduate|Continued|Application & Example|Correct & Complete|code|while|hasNext|next|Java|loop
+
+What is the advantage of using an iterator?|Chapter 7|Iterator|Good|Graduate|Continued|Conceptual|Correct & Complete|abstraction|independent|implementation|uniform|interface
+
+Can multiple iterators exist on the same collection?|Chapter 7|Iterator|Good|Graduate|Continued|Conceptual|Correct & Complete|multiple|independent|concurrent|separate|state
+
+What is the difference between Iterator and ListIterator?|Chapter 7|Iterator|Good|Graduate|Continued|Comparative|Correct & Complete|Iterator|ListIterator|bidirectional|previous|hasPrevious
+
+what iterator do|Chapter 7|Iterator|Poor|High School|New Topic|Malformed|Clarification Request|clarify|rephrase|does|mean
+
+# Chapter 10: Maps, Hash Tables, and Skip Lists (20 test cases)
+
+# Map Tests (7 cases)
+
+What is a Map?|Chapter 10|Map|Good|Undergraduate|New Topic|Definition|Correct & Complete|map|key|value|pair|ADT|dictionary
+
+What does the put(key, value) method do?|Chapter 10|Map|Good|Undergraduate|New Topic|Operation Understanding|Correct & Complete|put|insert|key|value|associate
+
+What does get(key) return if the key doesn't exist?|Chapter 10|Map|Good|Undergraduate|Continued|Edge Case|Correct & Complete|null|get|key|not found|missing
+
+Can a Map have duplicate keys?|Chapter 10|Map|Good|Undergraduate|Continued|Conceptual|Correct & Complete|unique|keys|duplicate|overwrite|replace
+
+What does the remove(key) method do?|Chapter 10|Map|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|remove|delete|key|value|pair
+
+Give a real-world example of a Map|Chapter 10|Map|Good|High School|New Topic|Real-World Analogy|Correct & Complete|phone book|dictionary|name|number|lookup|associate
+
+How is a Map different from a List?|Chapter 10|Map|Good|Undergraduate|Continued|Comparative|Correct & Complete|Map|List|key|index|unordered|ordered
+
+# Hash Table Tests (7 cases)
+
+What is a hash table?|Chapter 10|Hash Table|Good|Undergraduate|New Topic|Definition|Correct & Complete|hash table|hash|key|value|O(1)|collision
+
+How does a hash function work?|Chapter 10|Hash Table|Good|Graduate|Continued|Conceptual|Correct & Complete|hash function|hash code|index|bucket|compression
+
+What is a collision in a hash table?|Chapter 10|Hash Table|Good|Undergraduate|Continued|Definition|Correct & Complete|collision|same|index|bucket|hash
+
+Explain separate chaining for collision resolution|Chapter 10|Hash Table|Good|Graduate|Continued|Advanced Concept|Correct & Complete|separate chaining|linked list|bucket|collision|chain
+
+Explain open addressing for collision resolution|Chapter 10|Hash Table|Good|Graduate|Continued|Advanced Concept|Correct & Complete|open addressing|linear probing|quadratic|collision|probe
+
+What is the load factor in a hash table?|Chapter 10|Hash Table|Good|Graduate|Continued|Conceptual|Correct & Complete|load factor|n/N|capacity|size|ratio|performance
+
+When does a hash table need to be rehashed?|Chapter 10|Hash Table|Good|Graduate|Continued|Operation Understanding|Correct & Complete|rehash|resize|load factor|capacity|threshold|0.75
+
+# Skip List Tests (6 cases)
+
+What is a skip list?|Chapter 10|Skip List|Good|Graduate|New Topic|Definition|Correct & Complete|skip list|probabilistic|tower|levels|search
+
+How does search work in a skip list?|Chapter 10|Skip List|Good|Graduate|Continued|Operation Understanding|Correct & Complete|search|tower|level|forward|down|O(log n)
+
+What is the expected time complexity of skip list operations?|Chapter 10|Skip List|Good|Graduate|Continued|Performance|Correct & Complete|O(log n)|expected|time|search|insert|delete
+
+How are towers built in a skip list?|Chapter 10|Skip List|Good|Graduate|Continued|Conceptual|Correct & Complete|tower|coin flip|probability|random|levels|height
+
+What is the advantage of a skip list over a balanced tree?|Chapter 10|Skip List|Good|Graduate|Continued|Comparative|Correct & Complete|simpler|implementation|probabilistic|no rotation|balanced tree
+
+Explain the insertion process in a skip list|Chapter 10|Skip List|Good|Graduate|Continued|Operation Understanding|Correct & Complete|insert|search|tower|coin flip|update|pointers
+

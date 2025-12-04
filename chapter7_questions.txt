@@ -1,0 +1,72 @@
+
+What is an ArrayList?|Chapter 7|ArrayList|Good|Undergraduate|New Topic|Definition|Correct & Complete|ArrayList|dynamic|array|resizable
+
+How does an ArrayList differ from a regular array?|Chapter 7|ArrayList|Good|Undergraduate|New Topic|Comparative|Correct & Complete|ArrayList|array|dynamic|size
+
+What happens when you add an element beyond the capacity?|Chapter 7|ArrayList|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|capacity|resize|grow|double
+
+How does ArrayList resizing work?|Chapter 7|ArrayList|Good|Graduate|Continued|Operation Understanding|Correct & Complete|resize|capacity|double|copy
+
+What is the time complexity of get(index) in ArrayList?|Chapter 7|ArrayList|Good|Graduate|Continued|Performance|Correct & Complete|O(1)|constant|random access
+
+What is the time complexity of add(index, element)?|Chapter 7|ArrayList|Good|Graduate|Continued|Performance|Correct & Complete|O(n)|linear|shift
+
+Explain the remove(index) operation in ArrayList|Chapter 7|ArrayList|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|remove|shift|index
+
+What is the initial capacity of an ArrayList?|Chapter 7|ArrayList|Good|Undergraduate|Continued|Definition|Correct & Complete|initial|capacity|10
+
+Show me ArrayList implementation code in Java|Chapter 7|ArrayList|Good|Graduate|Continued|Application & Example|Correct & Complete|code|implementation|Java
+
+Why does ArrayList use an array internally?|Chapter 7|ArrayList|Good|Graduate|Continued|Conceptual|Correct & Complete|array|random access|O(1)
+
+arraylist what work|Chapter 7|ArrayList|Poor|High School|New Topic|Malformed|Clarification Request|clarify|rephrase|how
+
+
+What is a Positional List?|Chapter 7|Positional List|Good|Undergraduate|New Topic|Definition|Correct & Complete|positional|list|position|node
+
+How is a Positional List different from an ArrayList?|Chapter 7|Positional List|Good|Undergraduate|New Topic|Comparative|Correct & Complete|positional|ArrayList|pointer|index
+
+What does the addBefore() method do?|Chapter 7|Positional List|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|addBefore|insert|position|before
+
+What does the addAfter() method do?|Chapter 7|Positional List|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|addAfter|insert|position|after
+
+Explain the set(position, element) operation|Chapter 7|Positional List|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|set|replace|position|element
+
+What does the remove(position) method return?|Chapter 7|Positional List|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|remove|return|element|position
+
+What is a Position in a Positional List?|Chapter 7|Positional List|Good|Graduate|Continued|Definition|Correct & Complete|position|marker|node|reference
+
+How do you access the first position in a Positional List?|Chapter 7|Positional List|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|first|position|access
+
+What is the time complexity of addBefore()?|Chapter 7|Positional List|Good|Graduate|Continued|Performance|Correct & Complete|O(1)|constant|pointer
+
+Give an example where Positional List is better than ArrayList|Chapter 7|Positional List|Good|Graduate|Continued|Application & Example|Correct & Complete|insertion|deletion|O(1)|pointer
+
+How is a Positional List implemented internally?|Chapter 7|Positional List|Good|Graduate|Continued|Conceptual|Correct & Complete|doubly linked list|nodes|pointers
+
+positional list do|Chapter 7|Positional List|Poor|High School|New Topic|Malformed|Clarification Request|clarify|rephrase|what
+
+
+What is an iterator?|Chapter 7|Iterator|Good|Undergraduate|New Topic|Definition|Correct & Complete|iterator|traverse|collection|elements
+
+What does the hasNext() method do?|Chapter 7|Iterator|Good|Undergraduate|New Topic|Operation Understanding|Correct & Complete|hasNext|check|more|elements
+
+What does the next() method return?|Chapter 7|Iterator|Good|Undergraduate|Continued|Operation Understanding|Correct & Complete|next|return|element|advance
+
+What happens if you call next() when hasNext() is false?|Chapter 7|Iterator|Good|Undergraduate|Continued|Edge Case|Correct & Complete|NoSuchElementException|exception|hasNext
+
+Explain the iterator remove() method|Chapter 7|Iterator|Good|Graduate|Continued|Operation Understanding|Correct & Complete|remove|last|next|IllegalStateException
+
+What is an IllegalStateException in the context of iterators?|Chapter 7|Iterator|Good|Graduate|Continued|Error Handling|Correct & Complete|IllegalStateException|remove|next|contract
+
+Can you call remove() twice in a row?|Chapter 7|Iterator|Good|Graduate|Continued|Edge Case|Correct & Complete|remove|twice|IllegalStateException|next
+
+Show me how to use an iterator in Java|Chapter 7|Iterator|Good|Undergraduate|Continued|Application & Example|Correct & Complete|code|while|hasNext|next
+
+What is the advantage of using an iterator?|Chapter 7|Iterator|Good|Graduate|Continued|Conceptual|Correct & Complete|abstraction|independent|implementation
+
+Can multiple iterators exist on the same collection?|Chapter 7|Iterator|Good|Graduate|Continued|Conceptual|Correct & Complete|multiple|independent|concurrent
+
+What is the difference between Iterator and ListIterator?|Chapter 7|Iterator|Good|Graduate|Continued|Comparative|Correct & Complete|Iterator|ListIterator|bidirectional|previous
+
+what iterator do|Chapter 7|Iterator|Poor|High School|New Topic|Malformed|Clarification Request|clarify|rephrase|does
