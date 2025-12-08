@@ -49,7 +49,7 @@ HTML_TEMPLATE = """
         .container {
             background: white;
             border: 1px solid #ddd;
-            max-width: 600px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 30px;
         }
@@ -134,11 +134,11 @@ HTML_TEMPLATE = """
             margin-top: 30px;
             display: none;
         }
-        
+
         .progress-container.active {
             display: block;
         }
-        
+
         .progress-bar {
             width: 100%;
             height: 24px;
@@ -146,7 +146,7 @@ HTML_TEMPLATE = """
             border: 1px solid #ddd;
             margin-bottom: 15px;
         }
-        
+
         .progress-fill {
             height: 100%;
             background: #333;
@@ -158,17 +158,91 @@ HTML_TEMPLATE = """
             color: white;
             font-size: 12px;
         }
-        
+
+        .outputs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .output-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .output-header {
+            background: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
         .log-output {
             background: #f9f9f9;
             border: 1px solid #ddd;
+            border-top: none;
             padding: 15px;
             font-family: monospace;
             font-size: 11px;
-            max-height: 500px;
+            height: 400px;
             overflow-y: auto;
             white-space: pre-wrap;
             line-height: 1.4;
+            flex: 1;
+        }
+
+        .stats-area {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            padding: 15px;
+            font-size: 12px;
+            display: none;
+        }
+
+        .stats-area.active {
+            display: block;
+        }
+
+        .stats-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .stat-label {
+            color: #666;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .stat-value.success {
+            color: #28a745;
+        }
+
+        .stat-value.error {
+            color: #dc3545;
+        }
+
+        .stat-value.warning {
+            color: #ffc107;
         }
         
         .status {
@@ -212,7 +286,92 @@ HTML_TEMPLATE = """
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill">0%</div>
             </div>
-            <div class="log-output" id="logOutput"></div>
+
+            <div class="outputs-grid">
+                <div class="output-column">
+                    <div class="output-header">Claude</div>
+                    <div class="log-output" id="claudeOutput"></div>
+                    <div class="stats-area" id="claudeStats">
+                        <div class="stats-title">Statistics</div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Questions:</span>
+                            <span class="stat-value" id="claudeTotal">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Correct Answers:</span>
+                            <span class="stat-value success" id="claudeCorrect">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Wrong Answers:</span>
+                            <span class="stat-value error" id="claudeWrong">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">No Response:</span>
+                            <span class="stat-value warning" id="claudeNoResponse">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Accuracy:</span>
+                            <span class="stat-value" id="claudeAccuracy">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="output-column">
+                    <div class="output-header">ChatGPT</div>
+                    <div class="log-output" id="chatgptOutput"></div>
+                    <div class="stats-area" id="chatgptStats">
+                        <div class="stats-title">Statistics</div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Questions:</span>
+                            <span class="stat-value" id="chatgptTotal">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Correct Answers:</span>
+                            <span class="stat-value success" id="chatgptCorrect">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Wrong Answers:</span>
+                            <span class="stat-value error" id="chatgptWrong">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">No Response:</span>
+                            <span class="stat-value warning" id="chatgptNoResponse">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Accuracy:</span>
+                            <span class="stat-value" id="chatgptAccuracy">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="output-column">
+                    <div class="output-header">Copilot</div>
+                    <div class="log-output" id="copilotOutput"></div>
+                    <div class="stats-area" id="copilotStats">
+                        <div class="stats-title">Statistics</div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Questions:</span>
+                            <span class="stat-value" id="copilotTotal">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Correct Answers:</span>
+                            <span class="stat-value success" id="copilotCorrect">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Wrong Answers:</span>
+                            <span class="stat-value error" id="copilotWrong">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">No Response:</span>
+                            <span class="stat-value warning" id="copilotNoResponse">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Accuracy:</span>
+                            <span class="stat-value" id="copilotAccuracy">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="status" id="status"></div>
@@ -220,7 +379,66 @@ HTML_TEMPLATE = """
     
     <script>
         let eventSource = null;
-        
+        let currentService = null;
+
+        // Statistics tracking
+        let stats = {
+            claude: { total: 0, correct: 0, wrong: 0, noResponse: 0 },
+            chatgpt: { total: 0, correct: 0, wrong: 0, noResponse: 0 },
+            copilot: { total: 0, correct: 0, wrong: 0, noResponse: 0 }
+        };
+
+        function resetStats() {
+            stats = {
+                claude: { total: 0, correct: 0, wrong: 0, noResponse: 0 },
+                chatgpt: { total: 0, correct: 0, wrong: 0, noResponse: 0 },
+                copilot: { total: 0, correct: 0, wrong: 0, noResponse: 0 }
+            };
+
+            // Hide all stats areas
+            document.getElementById('claudeStats').classList.remove('active');
+            document.getElementById('chatgptStats').classList.remove('active');
+            document.getElementById('copilotStats').classList.remove('active');
+        }
+
+        function updateStatistics(service, result) {
+            const serviceLower = service.toLowerCase();
+
+            if (!stats[serviceLower]) {
+                return;
+            }
+
+            stats[serviceLower].total++;
+
+            if (result === 'Correct Answer') {
+                stats[serviceLower].correct++;
+            } else if (result === 'Wrong Answer') {
+                stats[serviceLower].wrong++;
+            } else if (result === 'No Response from AI') {
+                stats[serviceLower].noResponse++;
+            }
+        }
+
+        function displayStatistics() {
+            ['claude', 'chatgpt', 'copilot'].forEach(service => {
+                const serviceStats = stats[service];
+                const total = serviceStats.total;
+                const correct = serviceStats.correct;
+                const wrong = serviceStats.wrong;
+                const noResponse = serviceStats.noResponse;
+                const accuracy = total > 0 ? ((correct / total) * 100).toFixed(1) : 0;
+
+                document.getElementById(service + 'Total').textContent = total;
+                document.getElementById(service + 'Correct').textContent = correct;
+                document.getElementById(service + 'Wrong').textContent = wrong;
+                document.getElementById(service + 'NoResponse').textContent = noResponse;
+                document.getElementById(service + 'Accuracy').textContent = accuracy + '%';
+
+                // Show stats area
+                document.getElementById(service + 'Stats').classList.add('active');
+            });
+        }
+
         document.getElementById('questionsFile').addEventListener('change', function(e) {
             const fileName = e.target.files[0]?.name || '';
             const display = document.getElementById('questionsFileName');
@@ -242,8 +460,11 @@ HTML_TEMPLATE = """
             
             document.getElementById('submitBtn').disabled = true;
             document.getElementById('progressContainer').classList.add('active');
-            document.getElementById('logOutput').innerHTML = '';
+            document.getElementById('claudeOutput').innerHTML = '';
+            document.getElementById('chatgptOutput').innerHTML = '';
+            document.getElementById('copilotOutput').innerHTML = '';
             document.getElementById('status').style.display = 'none';
+            resetStats();
             
             try {
                 const response = await fetch('/upload', {
@@ -273,14 +494,18 @@ HTML_TEMPLATE = """
             
             eventSource.onmessage = function(event) {
                 const data = JSON.parse(event.data);
-                
+
                 if (data.type === 'progress') {
                     updateProgress(data.current, data.total, data.message);
                 } else if (data.type === 'log') {
                     addLog(data.message);
+                } else if (data.type === 'classification') {
+                    // Update statistics when classification data is received
+                    updateStatistics(data.service, data.result);
                 } else if (data.type === 'complete') {
                     eventSource.close();
                     document.getElementById('submitBtn').disabled = false;
+                    displayStatistics();
                     showStatus('Complete! Results saved to ' + data.output_file, 'success');
                 } else if (data.type === 'error') {
                     eventSource.close();
@@ -304,10 +529,50 @@ HTML_TEMPLATE = """
             }
         }
         
-        function addLog(message) {
-            const logOutput = document.getElementById('logOutput');
-            logOutput.textContent += message + '\\n';
-            logOutput.scrollTop = logOutput.scrollHeight;
+        function addLog(message, service = null) {
+            // Determine which tab to add the log to
+            let outputElement;
+
+            if (service) {
+                // If service is specified, add to that service's tab
+                if (service.toLowerCase().includes('claude')) {
+                    outputElement = document.getElementById('claudeOutput');
+                } else if (service.toLowerCase().includes('chatgpt')) {
+                    outputElement = document.getElementById('chatgptOutput');
+                } else if (service.toLowerCase().includes('copilot')) {
+                    outputElement = document.getElementById('copilotOutput');
+                }
+            }
+
+            // If no service specified or service not recognized, detect from message
+            if (!outputElement) {
+                if (message.includes('--- CLAUDE ---')) {
+                    currentService = 'claude';
+                    outputElement = document.getElementById('claudeOutput');
+                } else if (message.includes('--- CHATGPT ---')) {
+                    currentService = 'chatgpt';
+                    outputElement = document.getElementById('chatgptOutput');
+                } else if (message.includes('--- COPILOT ---')) {
+                    currentService = 'copilot';
+                    outputElement = document.getElementById('copilotOutput');
+                } else if (currentService) {
+                    // Use the current service if set
+                    outputElement = document.getElementById(currentService + 'Output');
+                } else {
+                    // Default to all tabs if no service detected
+                    ['claudeOutput', 'chatgptOutput', 'copilotOutput'].forEach(id => {
+                        const elem = document.getElementById(id);
+                        elem.textContent += message + '\\n';
+                        elem.scrollTop = elem.scrollHeight;
+                    });
+                    return;
+                }
+            }
+
+            if (outputElement) {
+                outputElement.textContent += message + '\\n';
+                outputElement.scrollTop = outputElement.scrollHeight;
+            }
         }
         
         function showStatus(message, type) {
@@ -403,10 +668,15 @@ def run_test(filename):
                     ai_response = response_data.get("response", "")
                     error = response_data.get("error", "")
                     keyword_analysis = response_data.get("keyword_analysis")
-                    
+                    validity = response_item.get("validity", "Invalid")
+                    result_classification = response_item.get("result", "No Response from AI")
+
                     service_header = f"\n--- {service.upper()} ---"
                     yield f"data: {json.dumps({'type': 'log', 'message': service_header})}\n\n"
-                    
+
+                    # Send classification result to client for statistics
+                    yield f"data: {json.dumps({'type': 'classification', 'service': service, 'validity': validity, 'result': result_classification})}\n\n"
+
                     if error:
                         yield f"data: {json.dumps({'type': 'log', 'message': f'Error: {error}'})}\n\n"
                     else:
@@ -418,7 +688,7 @@ def run_test(filename):
                             yield f"data: {json.dumps({'type': 'log', 'message': f'Response: {response_preview}'})}\n\n"
                         else:
                             yield f"data: {json.dumps({'type': 'log', 'message': 'Response: (empty)'})}\n\n"
-                        
+
                         # Display keyword analysis if available
                         if keyword_analysis:
                             match_ratio = keyword_analysis.get("match_ratio", 0)
